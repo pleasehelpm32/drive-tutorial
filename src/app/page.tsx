@@ -1,9 +1,14 @@
 import { db } from "~/server/db";
-import { files, folders } from "~/server/db/schema";
+import {
+  files_table as files,
+  files_table,
+  folders_table as folders,
+  folders_table,
+} from "~/server/db/schema";
 import DriveContents from "./drive-contents";
 
 export default async function GoogleDriveClone() {
-  const files = await db.select().from(filesSchema);
-  const folders = await db.select().from(foldersSchema);
+  const files = await db.select().from(files_table);
+  const folders = await db.select().from(folders_table);
   return <DriveContents files={files} folders={folders} />;
 }
